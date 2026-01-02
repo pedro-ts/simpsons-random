@@ -1,50 +1,174 @@
 <!doctype html>
 <html lang="pt-br">
-
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Sorteador Simpsons</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            padding: 20px;
-            max-width: 720px;
-            margin: auto;
-        }
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sorteador Simpsons</title>
 
-        button {
-            padding: 12px 16px;
-            font-size: 16px;
-            cursor: pointer;
-        }
+  <style>
+    :root {
+      --bg: #0b0d12;
+      --card: rgba(255,255,255,0.06);
+      --border: rgba(255,255,255,0.12);
+      --text: #f1f4ff;
+      --muted: rgba(241,244,255,0.65);
+      --accent: #ffd90f;
+      --radius: 16px;
+    }
 
-        .card {
-            margin-top: 16px;
-            padding: 14px;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-        }
+    * { box-sizing: border-box; }
 
-        a {
-            word-break: break-all;
-        }
-    </style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(800px 400px at 50% -10%, rgba(255,217,15,0.18), transparent 60%),
+        linear-gradient(160deg, #06070a, var(--bg));
+      display: flex;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    main {
+      width: 100%;
+      max-width: 720px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    header {
+      text-align: center;
+    }
+
+    h1 {
+      margin: 0 0 8px 0;
+      font-size: clamp(22px, 4vw, 30px);
+      letter-spacing: -0.02em;
+    }
+
+    p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .image-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 14px;
+      overflow: hidden;
+    }
+
+    .image-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 12px;
+    }
+
+    button {
+      margin-top: 6px;
+      padding: 14px 18px;
+      font-size: 16px;
+      font-weight: 600;
+      color: #111;
+      background: var(--accent);
+      border: none;
+      border-radius: 14px;
+      cursor: pointer;
+      transition: transform .08s ease, opacity .15s ease;
+    }
+
+    button:hover { opacity: 0.92; }
+    button:active { transform: scale(0.98); }
+
+    .card {
+      display: none;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px;
+      font-size: 15px;
+    }
+
+    .row {
+      margin-bottom: 10px;
+    }
+
+    .label {
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 2px;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      word-break: break-all;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      margin-top: 6px;
+      text-align: center;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    footer a {
+      color: var(--muted);
+    }
+  </style>
 </head>
 
 <body>
-    <h1>Sorteador de Episódios</h1>
-    <p>Clica e ele te dá uma temporada/episódio + link.</p>
+  <main>
+    <header>
+      <h1>Sorteador de Episódios</h1>
+      <p>Clica e ele te entrega uma temporada e um episódio aleatórios.</p>
+    </header>
 
-    <button id="btn">Sortear episódio</button>
-
-    <div class="card" id="out" style="display:none;">
-        <div><b>Temporada:</b> <span id="temp"></span></div>
-        <div><b>Episódio:</b> <span id="epi"></span></div>
-        <div><b>Link:</b> <a id="link" href="#" target="_blank" rel="noopener">abrir</a></div>
+    <div class="image-card">
+      <img
+        src="https://universohq.com/wp-content/uploads/2019/12/os-simpsons-30-anos.jpg"
+        alt="A família Simpsons"
+      />
     </div>
 
-    <script src="app.js"></script>
-</body>
+    <button id="btn">🎲 Sortear episódio</button>
 
+    <div class="card" id="out">
+      <div class="row">
+        <div class="label">Temporada</div>
+        <strong><span id="temp"></span></strong>
+      </div>
+
+      <div class="row">
+        <div class="label">Episódio</div>
+        <strong><span id="epi"></span></strong>
+      </div>
+
+      <div class="row">
+        <div class="label">Link</div>
+        <a id="link" href="#" target="_blank" rel="noopener">abrir episódio</a>
+      </div>
+    </div>
+
+    <footer>
+      Imagem de referência:
+      <a href="https://universohq.com/universo-paralelo/os-simpsons-30-anos/" target="_blank" rel="noopener">
+        Universo HQ
+      </a>
+    </footer>
+
+    <script src="app.js"></script>
+  </main>
+</body>
 </html>
